@@ -42,3 +42,8 @@ Replace `<device>` with the location of your SD card; e.g. `/dev/rdisk1`:
 ```
 unzip -p sdcard.img.zip | sudo dd bs=1m of=<device>
 ```
+
+
+### Windows ###
+
+Use the [WIN32 Disk Imager](https://sourceforge.net/projects/win32diskimager/) tool.
