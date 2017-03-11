@@ -4,7 +4,7 @@ This shell script creates a distributable image from a Raspberry Pi SD card.
 
 **NOTE**: This script has **not** been used for imaging irreplaceable data.
 While this script *should not* be destructive, it modifies the filesystem and
-partition table.
+partition table. **ALWAYS BACKUP YOUR CARD FIRST**
 
 It can be run like this:
 
