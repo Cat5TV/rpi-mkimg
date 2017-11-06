@@ -12,6 +12,12 @@ It can be run like this:
 bash mkimg.sh /dev/sda sdcard.img.zip
 ```
 
+My command for creating NEMS builds:
+
+```
+./mkimg.sh /dev/sdc NEMS_v1.3.img.zip
+```
+
 ## What does the script do ##
 
 Under the hood the script performs the following operations:
