@@ -6,17 +6,14 @@ Create a distributable image from a Raspberry Pi SD card.
 ### mkimg-pine64.sh ###
 
 Create a distributable image from a Pine64 SD card.
-
-██╗    ██╗ █████╗ ██████╗ ███╗   ██╗██╗███╗   ██╗ ██████╗ 
-██║    ██║██╔══██╗██╔══██╗████╗  ██║██║████╗  ██║██╔════╝ 
-██║ █╗ ██║███████║██████╔╝██╔██╗ ██║██║██╔██╗ ██║██║  ███╗
-██║███╗██║██╔══██║██╔══██╗██║╚██╗██║██║██║╚██╗██║██║   ██║
-╚███╔███╔╝██║  ██║██║  ██║██║ ╚████║██║██║ ╚████║╚██████╔╝
- ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝╚═╝  ╚═══╝ ╚═════╝ 
                                                           
 **NOTE**: This script has **not** been used for imaging irreplaceable data.
 While this script *should not* be destructive, it modifies the filesystem and
-partition table. **ALWAYS BACKUP YOUR CARD FIRST**
+partition table.
+
+## WARNING ##
+
+**ALWAYS BACKUP YOUR CARD FIRST**
 
 It can be run like this:
 
