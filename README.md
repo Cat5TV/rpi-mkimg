@@ -11,9 +11,7 @@ Create a distributable image from a Pine64 SD card.
 While this script *should not* be destructive, it modifies the filesystem and
 partition table.
 
-## WARNING ##
-
-**ALWAYS BACKUP YOUR CARD FIRST**
+## WARNING: ALWAYS BACKUP YOUR CARD FIRST ##
 
 It can be run like this:
 
