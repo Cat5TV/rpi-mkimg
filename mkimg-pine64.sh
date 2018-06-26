@@ -100,6 +100,8 @@ else
     dd bs=1M if=${device} of=${imgfile} count=${total_megs_rounded}
 
     # create md5
+    printf "Creating MD5 checksum..."
     md5sum ${imgfile} > ${imgfile}.md5
-
+    echo " Done."
+    
 fi
