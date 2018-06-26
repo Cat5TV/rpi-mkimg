@@ -10,7 +10,7 @@ else
     declare -a depends=("parted" "zip")
     
     device=$1
-    outfile=$2
+    imgfile=$2
     
     # sanity checks on the command line parameters
     if [ "${device}" == "" ]; then
@@ -18,8 +18,8 @@ else
         exit 1;
     fi;
     
-    if [ "${outfile}" == "" ]; then
-        echo "Please specify filename, e.g. $0 <device> zymbit.img.zip" 2>&1;
+    if [ "${imgfile}" == "" ]; then
+        echo "Please specify filename, e.g. $0 <device> myimage.img" 2>&1;
         exit 1;
     fi;
     
@@ -103,30 +103,8 @@ else
     let total_bytes=`parted ${device} unit B print | grep -v '^$' | awk '{print $3}' | tail -n 1 | sed -e 's/B//'`;
     let total_megs_rounded=`convert_bytes ${total_bytes}`
     
-    # generate a zip file on the fly
-    #time dd bs=1M if=${device} count=${total_megs_rounded} | gzip -9 > ${outfile}
-    imgfile=$(echo ${outfile} | sed -e 's/.zip$//')
-    if [ "${imgfile}" == "${outfile}" ]; then
-        imgfile=sdcard.img
-    fi;
     
-    # drop the .img to disk and then zip so that Macs can read the file
+    # drop the .img to disk
     dd bs=1M if=${device} of=${imgfile} count=${total_megs_rounded}
-#    zip ${outfile} ${imgfile}
-#    rm ${imgfile}
-    
-    
-    # expand the filesystem back
-#    full_size=$(parted ${device} print | grep "Disk ${device}" | awk '{print $3}')
-#    parted ${device} resizepart 2 ${full_size}
-    
-    # wait up to 10 seconds for the linux partition to show up
-#    for i in {0..9}; do
-#        [ -e ${linux_partition} ] && break
-#        sleep 1
-#    done;
-    
-    # if the linux partition didn't show up, this will fail
-#    resize2fs ${linux_partition}
 
 fi
