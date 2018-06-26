@@ -7,7 +7,7 @@ if [[ $EUID -ne 0 ]]; then
   exit 1
 else
     # Specify dependencies
-    declare -a depends=("parted" "zip")
+    declare -a depends=("parted")
     
     device=$1
     imgfile=$2
@@ -106,5 +106,8 @@ else
     
     # drop the .img to disk
     dd bs=1M if=${device} of=${imgfile} count=${total_megs_rounded}
+
+    # create md5
+    md5sum ${imgfile} > ${imgfile}.md5
 
 fi
