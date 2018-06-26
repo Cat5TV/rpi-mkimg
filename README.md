@@ -1,8 +1,9 @@
-# mkimg.sh #
+# rpi-mkimg #
 
+### mkimg.sh ###
 Create a distributable image from a Raspberry Pi SD card.
 
-# mkimg-pine64.sh #
+### mkimg-pine64.sh ###
 
 Create a distributable image from a Pine64 SD card.
 
