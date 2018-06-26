@@ -1,7 +1,8 @@
 #!/bin/bash
 # TESTING SCRIPT - NOT READY FOR PRODUCTION
 # USE AT OWN RISK!
-
+exit
+#Probably just going to use gparted + dd
 if [[ $EUID -ne 0 ]]; then
   echo "ERROR: You are not root" 2>&1
   exit 1
