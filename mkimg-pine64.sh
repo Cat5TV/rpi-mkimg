@@ -8,10 +8,14 @@ if [[ $EUID -ne 0 ]]; then
 else
     # Specify dependencies
     declare -a depends=("parted")
-    
+
+    # do not continue of there are errors
+    set -e
+
     device=$1
     imgfile=$2
-    
+    linux_partition=${device}2
+
     # sanity checks on the command line parameters
     if [ "${device}" == "" ]; then
         echo "Please specify device, e.g. $0 /dev/sda <filename>" 1>&2;
@@ -71,10 +75,6 @@ else
     }
     
     # start the dangerous stuff
-    linux_partition=${device}2
-    
-    # do not continue of there are errors
-    set -e
     
     e2fsck -f ${linux_partition}
     
@@ -103,5 +103,18 @@ else
     printf "Creating MD5 checksum..."
     md5sum ${imgfile} > ${imgfile}.md5
     echo " Done."
+
+    # expand the filesystem back
+    full_size=$(parted ${device} print | grep "Disk ${device}" | awk '{print $3}')
+    parted ${device} resizepart 2 ${full_size}
     
+    # wait up to 10 seconds for the linux partition to show up
+    for i in {0..9}; do
+        [ -e ${linux_partition} ] && break
+        sleep 1
+    done;
+    
+    # if the linux partition didn't show up, this will fail
+    resize2fs ${linux_partition}
+
 fi
