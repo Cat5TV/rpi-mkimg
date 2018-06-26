@@ -1,8 +1,14 @@
 #!/bin/bash
-# TESTING SCRIPT - NOT READY FOR PRODUCTION
-# USE AT OWN RISK!
+
 exit
+
 #Probably just going to use gparted + dd
+# using gparted, resize the main Linux partition (second partition of drive) to ~200MB+ larger than the actual data on drive
+# For our example, we'll say 4700 (which is MB)
+# Apply and run: dd if=/dev/sdb of=/tmp/t/NEMS/NEMS_v1.4.1-Pine64-Build2.img bs=1M count=4701
+# note the count is 1 block larger than the actual data to avoid truncating any actual data.
+
+# The below script resulted in a non-bootable image, but the above commands worked... so will have to re-work this.
 if [[ $EUID -ne 0 ]]; then
   echo "ERROR: You are not root" 2>&1
   exit 1
