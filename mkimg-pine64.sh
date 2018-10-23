@@ -8,6 +8,10 @@ exit
 # Apply and run: dd if=/dev/sdb of=/tmp/t/NEMS/NEMS_v1.4.1-Pine64-Build2.img bs=1M count=4701
 # note the count is 1 block larger than the actual data to avoid truncating any actual data.
 
+# Because disk may have more than one partition, instead:
+# Copy the Last Sector of the last partition within gparted
+# Run: dd if=/dev/sdb of=/tmp/t/NEMS/NEMS_v1.4.1-Pine64-Build2.img bs=512 count=[ceil(last sector / 512)]
+
 # The below script resulted in a non-bootable image, but the above commands worked... so will have to re-work this.
 if [[ $EUID -ne 0 ]]; then
   echo "ERROR: You are not root" 2>&1
