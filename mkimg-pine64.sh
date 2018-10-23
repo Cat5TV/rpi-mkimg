@@ -10,7 +10,8 @@ exit
 
 # Because disk may have more than one partition, instead:
 # Copy the Last Sector of the last partition within gparted
-# Run: dd if=/dev/sdb of=/tmp/t/NEMS/NEMS_v1.4.1-Pine64-Build2.img bs=512 count=[ceil(last sector * 512)]
+# First get the sector size (probably 512) with fdisk -l /dev/sdb
+# Run: dd if=/dev/sdb of=/tmp/t/NEMS/NEMS_v1.4.1-Pine64-Build2.img bs=512 count=[last sector + 1]
 
 # The below script resulted in a non-bootable image, but the above commands worked... so will have to re-work this.
 if [[ $EUID -ne 0 ]]; then
